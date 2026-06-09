@@ -29,8 +29,6 @@ public abstract class VaultItem implements Comparable<VaultItem>
     public void setUsernameOwner(String usernameOwner) {this.usernameOwner = usernameOwner;}
 
 
-    public abstract void displayItem();
-
     @Override
     public abstract String toString();
 

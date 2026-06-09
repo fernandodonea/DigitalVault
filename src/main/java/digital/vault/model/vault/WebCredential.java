@@ -23,18 +23,6 @@ public class WebCredential extends VaultItem
     public void setUsername(String username) {this.username = username;}
     public void setPassword(String password) {this.password = password;}
 
-    @Override
-    public void displayItem()
-    {
-        System.out.println("===================================");
-        System.out.println("Web account: " + getTitle());
-        System.out.println("-----------------------------------");
-
-        System.out.println("url:"+url);
-        System.out.println("username: "+username);
-
-        System.out.println("===================================");
-    }
 
     @Override
     public String toString()

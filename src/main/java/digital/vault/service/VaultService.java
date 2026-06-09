@@ -45,7 +45,7 @@ public class VaultService
             throw new ServiceException("Vault empty");
         }
 
-        usersVaultItems.forEach(VaultItem::displayItem);
+        usersVaultItems.forEach(System.out::println);
 
     }
 
