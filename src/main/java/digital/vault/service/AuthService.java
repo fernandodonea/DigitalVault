@@ -1,37 +1,43 @@
 package digital.vault.service;
 
+import digital.vault.dao.UserDao;
 import digital.vault.dao.impl.UserDaoInMemory;
+import digital.vault.exception.ServiceException;
 import digital.vault.model.User;
 import digital.vault.model.UserSession;
 import digital.vault.validation.EmailValidator;
+import digital.vault.validation.ValidationException;
 
 public class AuthService
 {
-    private UserDaoInMemory userDao;
+    private final UserDao userDao;
     private UserSession currentSession;
 
 
-    public AuthService(UserDaoInMemory userDao)  //injectam prin constructor
+    public AuthService(UserDao userDao)  //injectam prin constructor
     {
         this.userDao = userDao;
     }
 
-    public boolean register(String username, String email, String masterPassword)
+    public void register(String username, String email, String masterPassword)
     {
-        if(userDao.findByUsername(username)!=null)
-        {
-            System.out.println("There is already a user with the username  "+username);
-            return false;
+        if(username==null || username.isEmpty()){
+            throw new ServiceException("Name cannont be empty");
         }
-        else
-        {
-            EmailValidator emailValidator=new EmailValidator();
-            emailValidator.validate(email);
+        if(userDao.findByUsername(username)!=null){
+            throw new ServiceException("Username already taken");
+        }
 
-            User newUser=new User(username,email,masterPassword);
-            userDao.create(newUser);
-            return true;
+        try{
+            new EmailValidator().validate(email);
         }
+        catch (ValidationException e)
+        {
+            throw new ServiceException("Email is not valid"+e.getMessage());
+        }
+
+        //TODO validare parola
+        userDao.create(new User(username, email, masterPassword));
     }
 
     //daca login-ul e corect, returnam Secret Token-ul

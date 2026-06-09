@@ -1,6 +1,7 @@
 package digital.vault.service;
 
 import digital.vault.dao.impl.VaultDaoInMemory;
+import digital.vault.exception.ServiceException;
 import digital.vault.model.vault.VaultItem;
 
 import java.util.List;
@@ -24,43 +25,35 @@ public class VaultService
     public void addItem(VaultItem item, String token)
     {
         String username= authService.validateTokenAndGetUsername(token);
-        if(username!=null)
-        {
-            item.setUsernameOwner(username);
-            vaultDao.create(item);
-            System.out.println("Vault item salvat cu succes");
+        if(username==null){
+            throw new ServiceException("Invalid session. Log in again");
         }
-        else{
-            System.out.println("Nu esti autorizat. Logheaza-te");
-        }
+
+        item.setUsernameOwner(username);
+        vaultDao.create(item);
     }
 
     public void displayVault(String token)
     {
         String username= authService.validateTokenAndGetUsername(token);
-        if(username==null)
-        {
-            System.out.println("Sesiune expirata sau invalida");
-            return;
+        if(username==null){
+            throw new ServiceException("Invalid session. Log in again");
         }
 
         List<VaultItem> usersVaultItems=vaultDao.findUsersItems(username);
-        if(usersVaultItems==null)
-        {
-            System.out.println("Seif gol");
+        if(usersVaultItems==null){
+            throw new ServiceException("Vault empty");
         }
-        else{
-            usersVaultItems.forEach(VaultItem::displayItem);
-        }
+
+        usersVaultItems.forEach(VaultItem::displayItem);
+
     }
 
     public void deleteItem(int id, String token)
     {
         String username= authService.validateTokenAndGetUsername(token);
-        if(username==null)
-        {
-            System.out.println("Sesiune expirata sau invalida");
-            return;
+        if(username==null){
+            throw new ServiceException("Invalid session. Log in again");
         }
         else{
             vaultDao.deleteById(id);

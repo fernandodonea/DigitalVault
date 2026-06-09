@@ -1,5 +1,6 @@
 package digital.vault.ui;
 
+import digital.vault.exception.ServiceException;
 import digital.vault.service.AuthService;
 import digital.vault.service.VaultService;
 
@@ -66,45 +67,47 @@ public class TerminalService
         if(args.length!=4)
         {
             System.out.println("Incorect number of paramters");
+            return;
         }
-        else{
+
+        try{
             authService.register(args[1],args[2],args[3]);
+            System.out.println("Account created succesfully");
+        }
+        catch (ServiceException e)
+        {
+            System.out.println(e.getMessage());
         }
 
     }
 
     private void handleLogin(String[] args)
     {
-        if(args.length==3)
-        {
-            currenUserToken=authService.login(args[1],args[2]);
-        }
-        else
+        if(args.length!=3)
         {
             System.out.println("Incorect number of paramters");
+            return;
+
+        }
+        try{
+            currenUserToken=authService.login(args[1],args[2]);
+            System.out.println("Logged in succesfully");
+        }
+        catch (ServiceException e)
+        {
+            System.out.println(e.getMessage());
         }
 
-        if(currenUserToken!=null)
-        {
-            System.out.println("Succesful login!");
-        }
-        else
-        {
-            System.out.println("Incorect Data");
-        }
     }
 
     private void handleLogout(String[] args)
     {
-        if(args.length==1)
-        {
-            authService.logout();
-            currenUserToken=null;
-        }
-        else
+        if(args.length!=1)
         {
             System.out.println("Incorect number of paramters");
         }
+        authService.logout();
+        currenUserToken=null;
     }
 
 
