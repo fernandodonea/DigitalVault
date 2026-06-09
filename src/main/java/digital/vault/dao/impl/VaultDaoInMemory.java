@@ -1,13 +1,14 @@
 package digital.vault.dao.impl;
 
 import digital.vault.dao.GenericDao;
+import digital.vault.dao.VaultDao;
 import digital.vault.model.vault.VaultItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class VaultDaoInMemory implements GenericDao<VaultItem>
+public class VaultDaoInMemory implements VaultDao
 {
     List<VaultItem> vaultItems =new ArrayList<>();
 
@@ -20,19 +21,6 @@ public class VaultDaoInMemory implements GenericDao<VaultItem>
     public List<VaultItem> findAll()
     {
         return vaultItems;
-    }
-
-    public List<VaultItem> findUsersItems(String username)
-    {
-        List<VaultItem> userItems=new ArrayList<>();
-        for(VaultItem v: vaultItems)
-        {
-            if(v.getUsernameOwner().equals(username))
-                userItems.add(v);
-        }
-
-        Collections.sort(userItems);//sortam
-        return userItems;
     }
 
     @Override
@@ -64,5 +52,19 @@ public class VaultDaoInMemory implements GenericDao<VaultItem>
     {
         //lambda expresie
         vaultItems.removeIf(i->i.getId()==id);
+    }
+
+    @Override
+    public List<VaultItem> findUserItems(String username)
+    {
+        List<VaultItem> userItems=new ArrayList<>();
+        for(VaultItem v: vaultItems)
+        {
+            if(v.getUsernameOwner().equals(username))
+                userItems.add(v);
+        }
+
+        Collections.sort(userItems);//sortam
+        return userItems;
     }
 }

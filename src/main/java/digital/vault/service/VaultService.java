@@ -40,7 +40,7 @@ public class VaultService
             throw new ServiceException("Invalid session. Log in again");
         }
 
-        List<VaultItem> usersVaultItems=vaultDao.findUsersItems(username);
+        List<VaultItem> usersVaultItems=vaultDao.findUserItems(username);
         if(usersVaultItems==null){
             throw new ServiceException("Vault empty");
         }

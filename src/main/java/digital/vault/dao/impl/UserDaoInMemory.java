@@ -1,19 +1,19 @@
 package digital.vault.dao.impl;
 
 import digital.vault.dao.GenericDao;
+import digital.vault.dao.UserDao;
 import digital.vault.model.User;
 
 import java.util.*;
 
-public class UserDaoInMemory implements GenericDao<User>
+public class UserDaoInMemory implements UserDao
 {
 
     private Map<Integer,User> users=new HashMap<>(); //dicitona in care retinem username:user
 
 
     @Override
-    public void create(User u)
-    {
+    public void create(User u) {
         users.put(u.getId(),u);
     }
 
@@ -24,8 +24,7 @@ public class UserDaoInMemory implements GenericDao<User>
 
 
     @Override
-    public User findById(int id)
-    {
+    public User findById(int id) {
         return users.get(id);
     }
     @Override
