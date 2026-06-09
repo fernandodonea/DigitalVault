@@ -1,4 +1,4 @@
-package digital.vault.util.exceptions;
+package digital.vault.validation;
 
 public class ValidationException extends RuntimeException
 {

@@ -1,7 +1,6 @@
-package digital.vault.model.vault.items;
+package digital.vault.model.vault;
 
 import digital.vault.model.Category;
-import digital.vault.model.VaultItem;
 
 public class Card extends VaultItem
 {
@@ -44,6 +43,11 @@ public class Card extends VaultItem
         System.out.println("Card holder name: "+cardHolderName);
 
         System.out.println("===================================");
+    }
 
+    @Override
+    public String toString()
+    {
+        return "[card]"+"       "+getTitle()+"      "+getCategory();
     }
 }

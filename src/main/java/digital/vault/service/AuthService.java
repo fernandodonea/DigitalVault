@@ -1,9 +1,9 @@
 package digital.vault.service;
 
-import digital.vault.dao.UserDaoInMemory;
-import digital.vault.dao.VaultDaoInMemory;
+import digital.vault.dao.impl.UserDaoInMemory;
 import digital.vault.model.User;
 import digital.vault.model.UserSession;
+import digital.vault.validation.EmailValidator;
 
 public class AuthService
 {
@@ -20,11 +20,14 @@ public class AuthService
     {
         if(userDao.findByUsername(username)!=null)
         {
-            System.out.println("Exista deja un utilizator cu username-ul "+username);
+            System.out.println("There is already a user with the username  "+username);
             return false;
         }
         else
         {
+            EmailValidator emailValidator=new EmailValidator();
+            emailValidator.validate(email);
+
             User newUser=new User(username,email,masterPassword);
             userDao.create(newUser);
             return true;

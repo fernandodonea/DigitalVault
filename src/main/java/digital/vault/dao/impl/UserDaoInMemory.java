@@ -1,5 +1,6 @@
-package digital.vault.dao;
+package digital.vault.dao.impl;
 
+import digital.vault.dao.GenericDao;
 import digital.vault.model.User;
 
 import java.util.*;
@@ -41,7 +42,6 @@ public class UserDaoInMemory implements GenericDao<User>
     {
         users.remove(id);
     }
-
 
     public User findByUsername(String searchedUsername)
     {

@@ -1,9 +1,9 @@
-package digital.vault.dao;
+package digital.vault.dao.impl;
 
-import digital.vault.model.VaultItem;
+import digital.vault.dao.GenericDao;
+import digital.vault.model.vault.VaultItem;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

@@ -1,7 +1,6 @@
-package digital.vault.model.vault.items;
+package digital.vault.model.vault;
 
 import digital.vault.model.Category;
-import digital.vault.model.VaultItem;
 
 public class WebCredential extends VaultItem
 {
@@ -28,13 +27,19 @@ public class WebCredential extends VaultItem
     public void displayItem()
     {
         System.out.println("===================================");
-        System.out.println("Cont web: " + getTitle());
+        System.out.println("Web account: " + getTitle());
         System.out.println("-----------------------------------");
 
         System.out.println("url:"+url);
         System.out.println("username: "+username);
 
         System.out.println("===================================");
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[web credential]"+"       "+getTitle()+"      "+getCategory();
     }
 
 }

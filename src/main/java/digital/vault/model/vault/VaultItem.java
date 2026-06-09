@@ -1,4 +1,6 @@
-package digital.vault.model;
+package digital.vault.model.vault;
+
+import digital.vault.model.Category;
 
 public abstract class VaultItem implements Comparable<VaultItem>
 {
@@ -28,6 +30,9 @@ public abstract class VaultItem implements Comparable<VaultItem>
 
 
     public abstract void displayItem();
+
+    @Override
+    public abstract String toString();
 
     @Override
     public int compareTo(VaultItem o)

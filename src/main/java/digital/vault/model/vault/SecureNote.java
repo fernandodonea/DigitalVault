@@ -1,7 +1,6 @@
-package digital.vault.model.vault.items;
+package digital.vault.model.vault;
 
 import digital.vault.model.Category;
-import digital.vault.model.VaultItem;
 
 public class SecureNote extends VaultItem
 {
@@ -28,5 +27,11 @@ public class SecureNote extends VaultItem
 
         System.out.println("===================================");
 
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[secure note]"+"       "+getTitle()+"      "+getCategory();
     }
 }

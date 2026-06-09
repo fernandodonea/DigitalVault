@@ -1,7 +1,7 @@
 package digital.vault.service;
 
-import digital.vault.dao.VaultDaoInMemory;
-import digital.vault.model.VaultItem;
+import digital.vault.dao.impl.VaultDaoInMemory;
+import digital.vault.model.vault.VaultItem;
 
 import java.util.List;
 
@@ -11,8 +11,6 @@ public class VaultService
     private AuthService authService;
 
     //injectam dependintele
-
-
     public VaultService(VaultDaoInMemory vaultDao, AuthService authService) {
         this.vaultDao = vaultDao;
         this.authService = authService;

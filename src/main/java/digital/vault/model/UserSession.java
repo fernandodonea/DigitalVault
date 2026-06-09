@@ -5,9 +5,9 @@ import java.util.UUID;
 
 public class UserSession
 {
-    private String secretToken;
-    private String username;
-    private LocalDateTime expiresAt;
+    private final String secretToken;
+    private final String username;
+    private final LocalDateTime expiresAt;
 
     public UserSession(String username, int hoursValid)
     {
