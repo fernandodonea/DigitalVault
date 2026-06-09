@@ -1,5 +1,7 @@
 package digital.vault.validation;
 
+import digital.vault.exception.ValidationException;
+
 public class UrlValidator implements Validator<String>
 {
 

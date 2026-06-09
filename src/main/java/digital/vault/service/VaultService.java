@@ -1,14 +1,21 @@
 package digital.vault.service;
 
+import digital.vault.dao.VaultDao;
 import digital.vault.dao.impl.VaultDaoInMemory;
 import digital.vault.exception.ServiceException;
+import digital.vault.exception.ValidationException;
+import digital.vault.model.vault.Card;
 import digital.vault.model.vault.VaultItem;
+import digital.vault.model.vault.WebCredential;
+import digital.vault.validation.CardNumberValidator;
+import digital.vault.validation.CvvValidator;
+import digital.vault.validation.UrlValidator;
 
 import java.util.List;
 
 public class VaultService
 {
-    private VaultDaoInMemory vaultDao;
+    private VaultDao vaultDao;
     private AuthService authService;
 
     //injectam dependintele
@@ -29,24 +36,34 @@ public class VaultService
             throw new ServiceException("Invalid session. Log in again");
         }
 
+        try{
+            if(item instanceof Card card)
+            {
+                new CardNumberValidator().validate(card.getCardNumber());
+                new CvvValidator().validate(card.getCvv());
+            } else if (item instanceof WebCredential web) {
+                new UrlValidator().validate(web.getUrl());
+            }
+        }catch (ValidationException v){
+            throw new ServiceException("Item validation failed: "+v.getMessage());
+        }
         item.setUsernameOwner(username);
         vaultDao.create(item);
     }
 
-    public void displayVault(String token)
+    public List<VaultItem> getVaultItems(String token)
     {
-        String username= authService.validateTokenAndGetUsername(token);
+        String username=authService.validateTokenAndGetUsername(token);
         if(username==null){
             throw new ServiceException("Invalid session. Log in again");
         }
 
-        List<VaultItem> usersVaultItems=vaultDao.findUserItems(username);
-        if(usersVaultItems==null){
+        List<VaultItem> userItems=vaultDao.findUserItems(username);
+        if(userItems==null || userItems.isEmpty()){
             throw new ServiceException("Vault empty");
         }
 
-        usersVaultItems.forEach(System.out::println);
-
+        return userItems;
     }
 
     public void deleteItem(int id, String token)
@@ -55,9 +72,11 @@ public class VaultService
         if(username==null){
             throw new ServiceException("Invalid session. Log in again");
         }
-        else{
-            vaultDao.deleteById(id);
+        VaultItem item=vaultDao.findById(id);
+        if(!item.getUsernameOwner().equals(username)){
+            throw new ServiceException("That is not your item");
         }
+        vaultDao.deleteById(id);
     }
 
 

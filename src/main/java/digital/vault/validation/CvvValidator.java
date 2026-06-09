@@ -1,5 +1,7 @@
 package digital.vault.validation;
 
+import digital.vault.exception.ValidationException;
+
 public class CvvValidator implements Validator<Integer>
 {
     @Override

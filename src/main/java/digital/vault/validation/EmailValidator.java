@@ -1,5 +1,7 @@
 package digital.vault.validation;
 
+import digital.vault.exception.ValidationException;
+
 public class EmailValidator implements Validator<String>
 {
     @Override

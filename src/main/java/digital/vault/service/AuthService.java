@@ -1,12 +1,12 @@
 package digital.vault.service;
 
 import digital.vault.dao.UserDao;
-import digital.vault.dao.impl.UserDaoInMemory;
 import digital.vault.exception.ServiceException;
 import digital.vault.model.User;
 import digital.vault.model.UserSession;
 import digital.vault.validation.EmailValidator;
-import digital.vault.validation.ValidationException;
+import digital.vault.exception.ValidationException;
+import digital.vault.validation.PasswordValidator;
 
 public class AuthService
 {
@@ -36,8 +36,16 @@ public class AuthService
             throw new ServiceException("Email is not valid"+e.getMessage());
         }
 
-        //TODO validare parola
-        userDao.create(new User(username, email, masterPassword));
+
+        try{
+            new PasswordValidator().validate(masterPassword);
+        }
+        catch (ValidationException e){
+            throw new ServiceException("Passowrd is not valid: "+e.getMessage());
+        }
+
+        userDao.create(new User(username,email,masterPassword));
+
     }
 
     //daca login-ul e corect, returnam Secret Token-ul
@@ -46,7 +54,7 @@ public class AuthService
         User user=userDao.findByUsername(username);
         if(user!=null && user.getMasterPassword().equals(password))
         {
-            currentSession=new UserSession(username, 2);
+            currentSession=new UserSession(username, 1);
             return currentSession.getSecretToken();
         }
 
