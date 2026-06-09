@@ -19,7 +19,7 @@ public class VaultService
     private AuthService authService;
 
     //injectam dependintele
-    public VaultService(VaultDaoInMemory vaultDao, AuthService authService) {
+    public VaultService(VaultDao vaultDao, AuthService authService) {
         this.vaultDao = vaultDao;
         this.authService = authService;
     }

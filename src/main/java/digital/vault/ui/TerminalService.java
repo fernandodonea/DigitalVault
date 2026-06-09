@@ -1,6 +1,11 @@
 package digital.vault.ui;
 
 import digital.vault.exception.ServiceException;
+import digital.vault.model.Category;
+import digital.vault.model.vault.Card;
+import digital.vault.model.vault.SecureNote;
+import digital.vault.model.vault.VaultItem;
+import digital.vault.model.vault.WebCredential;
 import digital.vault.service.AuthService;
 import digital.vault.service.VaultService;
 
@@ -54,6 +59,12 @@ public class TerminalService
                 case "logout":
                     handleLogout(args);
                     break;
+                case "ls":
+                    handeShowVault(args);
+                    break;
+                case "touch":
+                    handleAddItem(args);
+                    break;
                 case "quit":
                     return;
             }
@@ -91,11 +102,18 @@ public class TerminalService
         }
         try{
             currenUserToken=authService.login(args[1],args[2]);
-            System.out.println("Logged in succesfully");
         }
         catch (ServiceException e)
         {
             System.out.println(e.getMessage());
+        }
+
+        if(currenUserToken!=null)
+        {
+            System.out.println("Logged in succesfully!");
+        }
+        else{
+            System.out.println("Incorect password");
         }
 
     }
@@ -108,6 +126,94 @@ public class TerminalService
         }
         authService.logout();
         currenUserToken=null;
+    }
+    private void handeShowVault(String[] args)
+    {
+        if(args.length!=1)
+        {
+            System.out.println("Incorect number of paramters");
+            return;
+        }
+
+        try{
+            var items=vaultService.getVaultItems(currenUserToken);
+            items.forEach(System.out::println);
+        }
+        catch (ServiceException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void handleAddItem(String[] args)
+    {
+        if(args.length!=2)
+        {
+            System.out.println("Incorect number of paramters");
+            return;
+        }
+        String username=authService.validateTokenAndGetUsername(currenUserToken);
+        if(username==null){
+            System.out.println("You must be logged in to add an item");
+            return;
+
+        }
+
+
+        Scanner sc=new Scanner(System.in);
+        VaultItem newItem = null;
+
+        System.out.print("Enter title: ");
+        String title=sc.nextLine().trim();
+        System.out.print("Enter category (BANKING, SOCIAL, WORK, EMAIL, OTHER): ");
+        String categoryStr=sc.nextLine().trim().toUpperCase();
+
+        Category category;
+        try{
+            category=Category.valueOf(categoryStr);
+        }catch (IllegalArgumentException e)
+        {
+            System.out.println("Invalid category. Defaulting to other");
+            category=Category.OTHER;
+        }
+
+        switch (args[1])
+        {
+            case "note":
+                System.out.print("Enter content :");
+                String content=sc.nextLine();
+                newItem=new SecureNote(title, category,"",content);
+                break;
+            case "card":
+                System.out.print("Enter card number: ");
+                String cardNo = sc.nextLine();
+                System.out.print("Enter card holder name: ");
+                String ownerName = sc.nextLine();
+                System.out.print("Enter CVV: ");
+                int cvv = 0;
+                try {
+                    cvv = Integer.parseInt(sc.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("CVV must be a valid number.");
+                    return;
+                }
+                newItem = new Card(title, category, "", cardNo, ownerName, cvv);
+                break;
+            case "web":
+                System.out.print("Enter website URL: ");
+                String url = sc.nextLine();
+                System.out.print("Enter username/email: ");
+                String usr = sc.nextLine();
+                System.out.print("Enter password: ");
+                String pass = sc.nextLine();
+                newItem = new WebCredential(title, category, "", url, usr, pass);
+        }
+        if(newItem!=null)
+        {
+            vaultService.addItem(newItem,currenUserToken);
+        }
+
+
+
     }
 
 
