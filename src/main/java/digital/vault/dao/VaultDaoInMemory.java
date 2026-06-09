@@ -3,9 +3,11 @@ package digital.vault.dao;
 import digital.vault.model.VaultItem;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-public class VauldDaoInMemory implements GenericDao<VaultItem>
+public class VaultDaoInMemory implements GenericDao<VaultItem>
 {
     List<VaultItem> vaultItems =new ArrayList<>();
 
@@ -19,6 +21,20 @@ public class VauldDaoInMemory implements GenericDao<VaultItem>
     {
         return vaultItems;
     }
+
+    public List<VaultItem> findUsersItems(String username)
+    {
+        List<VaultItem> userItems=new ArrayList<>();
+        for(VaultItem v: vaultItems)
+        {
+            if(v.getUsernameOwner().equals(username))
+                userItems.add(v);
+        }
+
+        Collections.sort(userItems);//sortam
+        return userItems;
+    }
+
     @Override
     public VaultItem findById(int id)
     {

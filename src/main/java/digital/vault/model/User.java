@@ -22,4 +22,5 @@ public class User
     public String getUsername() {return username;}
     public String getEmail() {return email;}
     public int getId() {return id;}
+    public String getMasterPassword() {return masterPassword;}
 }
