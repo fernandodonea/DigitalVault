@@ -1,7 +1,6 @@
 package digital.vault.service;
 
 import digital.vault.dao.VaultDao;
-import digital.vault.dao.impl.VaultDaoInMemory;
 import digital.vault.exception.ServiceException;
 import digital.vault.exception.ValidationException;
 import digital.vault.model.vault.Card;
@@ -31,7 +30,7 @@ public class VaultService
 
     public void addItem(VaultItem item, String token)
     {
-        String username= authService.validateTokenAndGetUsername(token);
+        String username= authService.getUsernameFromToken(token);
         if(username==null){
             throw new ServiceException("Invalid session. Log in again");
         }
@@ -53,7 +52,7 @@ public class VaultService
 
     public List<VaultItem> getVaultItems(String token)
     {
-        String username=authService.validateTokenAndGetUsername(token);
+        String username=authService.getUsernameFromToken(token);
         if(username==null){
             throw new ServiceException("Invalid session. Log in again");
         }
@@ -68,7 +67,7 @@ public class VaultService
 
     public void deleteItem(String id, String token)
     {
-        String username= authService.validateTokenAndGetUsername(token);
+        String username= authService.getUsernameFromToken(token);
         if(username==null){
             throw new ServiceException("Invalid session. Log in again");
         }

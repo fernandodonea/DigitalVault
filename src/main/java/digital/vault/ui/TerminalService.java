@@ -37,7 +37,7 @@ public class TerminalService
             }
             else
             {
-                String username=authService.validateTokenAndGetUsername(currenUserToken);
+                String username=authService.getUsernameFromToken(currenUserToken);
                 System.out.print(username+"@vault> ");
             }
 
@@ -102,16 +102,11 @@ public class TerminalService
         }
         try{
             currenUserToken=authService.login(args[1],args[2]);
-            if(currenUserToken!=null)
-            {
-                System.out.println("Logged in succesfully!");
-            }else{
-                System.out.println("Incorect password");
-            }
+            System.out.println("Logged in succesfully");
         }
         catch (ServiceException e)
         {
-            System.out.println(e.getMessage());
+            System.out.println("Login failed:"+e.getMessage());
         }
 
     }
@@ -122,8 +117,14 @@ public class TerminalService
         {
             System.out.println("Incorect number of paramters");
         }
-        authService.logout();
-        currenUserToken=null;
+        try{
+            authService.logout();
+            currenUserToken=null;
+            System.out.println("Logged out succesfully");
+        }catch (ServiceException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
     private void handeShowVault(String[] args)
     {
@@ -149,7 +150,7 @@ public class TerminalService
             System.out.println("Incorect number of paramters");
             return;
         }
-        String username=authService.validateTokenAndGetUsername(currenUserToken);
+        String username=authService.getUsernameFromToken(currenUserToken);
         if(username==null){
             System.out.println("You must be logged in to add an item");
             return;

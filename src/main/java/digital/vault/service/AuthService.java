@@ -51,27 +51,35 @@ public class AuthService
     //daca login-ul e corect, returnam Secret Token-ul
     public String login(String username, String password)
     {
-        User user=userDao.findByUsername(username);
-        if(user==null){
-            throw  new ServiceException("Username not found");
-        }
-        if(user.getMasterPassword().equals(password))
-        {
-            currentSession=new UserSession(username, 1);
-            return currentSession.getSecretToken();
+        //verificam ca user-ul ca un user sa nu fie deja logat
+        if(currentSession!=null && !currentSession.isExpired()){
+            throw new ServiceException("Already logged as"+currentSession.getUsername()+". Logout first");
         }
 
-        return null;
+
+        //verificam credentiasl
+        User user=userDao.findByUsername(username);
+        if(user==null || !user.getMasterPassword().equals(password)){
+            throw  new ServiceException("Invalid username or password");
+        }
+
+        //cream sesiunea
+        currentSession=new UserSession(username, 1);
+        return currentSession.getSecretToken();
+
     }
 
     public void logout()
     {
+        if(currentSession==null){
+            throw new ServiceException("No active session to logut from");
+        }
         currentSession=null;
     }
 
 
     //metoda de securitate pentru a valida user-ul si token-ul
-    public String validateTokenAndGetUsername(String token)
+    public String getUsernameFromToken(String token)
     {
         if(currentSession==null || token==null)
             return null;
