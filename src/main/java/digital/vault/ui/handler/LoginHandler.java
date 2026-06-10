@@ -30,7 +30,7 @@ public class LoginHandler implements CommandHandler
         }
         catch (ServiceException s)
         {
-            System.out.println("Loggin failed: "+s.getMessage());
+            System.out.println("[Loggin failed] "+s.getMessage());
         }
     }
 }

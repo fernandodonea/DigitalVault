@@ -24,7 +24,7 @@ public class RegisterHandler implements CommandHandler
         }
         catch (ServiceException s)
         {
-            System.out.println("Registration failed: "+s.getMessage());
+            System.out.println("[Registration failed] "+s.getMessage());
         }
 
     }

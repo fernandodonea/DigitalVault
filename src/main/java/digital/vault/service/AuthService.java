@@ -33,7 +33,7 @@ public class AuthService
         }
         catch (ValidationException e)
         {
-            throw new ServiceException("Email is not valid"+e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
 
 

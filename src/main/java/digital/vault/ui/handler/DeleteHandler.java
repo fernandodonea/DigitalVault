@@ -28,11 +28,11 @@ public class DeleteHandler implements CommandHandler
         }
 
         try{
-            vaultService.deleteItem(args[2],session.getToken());
+            vaultService.deleteItem(args[1],session.getToken());
             System.out.println("Item deleted succesfully");
         }catch (ServiceException e)
         {
-            System.out.println("Cannot delete item: "+e.getMessage());
+            System.out.println("[Cannot delete item]  "+e.getMessage());
         }
     }
 }

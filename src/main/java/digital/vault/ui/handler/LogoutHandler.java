@@ -1,5 +1,6 @@
 package digital.vault.ui.handler;
 
+import digital.vault.exception.ServiceException;
 import digital.vault.service.AuthService;
 
 public class LogoutHandler implements CommandHandler
@@ -31,9 +32,9 @@ public class LogoutHandler implements CommandHandler
             session.clearToken();
             System.out.println("Logged out succesfully");
         }
-        catch (SecurityException e)
+        catch (ServiceException e)
         {
-            System.out.println("Logout failed:"+e.getMessage());
+            System.out.println("[Logout failed] "+e.getMessage());
         }
 
 

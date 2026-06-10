@@ -1,5 +1,6 @@
 package digital.vault.ui.handler;
 
+import digital.vault.exception.ServiceException;
 import digital.vault.factory.VaultItemFactory;
 import digital.vault.model.vault.VaultItem;
 import digital.vault.service.VaultService;
@@ -41,9 +42,9 @@ public class AddItemHandler implements  CommandHandler
             vaultService.addItem(item, session.getToken());
             System.out.println("Item '"+item.getTitle()+ "' added succesfully");
         }
-        catch (SecurityException e)
+        catch (ServiceException e)
         {
-            System.out.println("Could not add item: "+e.getMessage());
+            System.out.println("[Could not add item] "+e.getMessage());
         }
 
     }
