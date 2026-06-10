@@ -11,16 +11,18 @@ import digital.vault.ui.TerminalService;
 
 
 public class Main {
-    static void main() {
+    static void main()
+    {
         UserDao userDao=new UserDaoInMemory();
         VaultDao vaultDao=new VaultDaoInMemory();
 
+
         AuthService authService=new AuthService(userDao);
-        VaultService vaultService=new VaultService(vaultDao,authService);
+        VaultService vaultService=new VaultService(vaultDao, authService);
 
-        TerminalService terminal=new TerminalService(authService,vaultService);
+
+        TerminalService terminal = new TerminalService(vaultService, authService);
         terminal.start();
-
 
 
     }
