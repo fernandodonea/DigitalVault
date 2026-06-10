@@ -29,7 +29,7 @@ public class ShowHandler implements  CommandHandler
             return;
         }
         try{
-            VaultItem item= vaultService.getItemById(args[1],session.getToken());
+            VaultItem item= vaultService.getVaultItemById(args[1],session.getToken());
             printItem(item);
         }catch (ServiceException e)
         {

@@ -45,6 +45,7 @@ public class AuthService
         }
 
         userDao.create(new User(username,email,masterPassword));
+        AuditService.getInstance().log("register");
 
     }
 
@@ -65,6 +66,7 @@ public class AuthService
 
         //cream sesiunea
         currentSession=new UserSession(username, 1);
+        AuditService.getInstance().log("login");
         return currentSession.getSecretToken();
 
     }
@@ -74,7 +76,9 @@ public class AuthService
         if(currentSession==null){
             throw new ServiceException("No active session to logut from");
         }
+        AuditService.getInstance().log("logout");
         currentSession=null;
+
     }
 
 

@@ -34,11 +34,11 @@ public class UpdateHandler implements CommandHandler
             return;
         }
         try{
-            VaultItem item= vaultService.getItemById(args[1],session.getToken());
+            VaultItem item= vaultService.getVaultItemById(args[1],session.getToken());
             VaultItem updated=editItem(item);
             if(updated!=null)
             {
-                vaultService.updateItem(args[1],updated, session.getToken());
+                vaultService.updateVaultItem(args[1],updated, session.getToken());
                 System.out.println("Item updated");
             }
         }

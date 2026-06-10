@@ -2,7 +2,6 @@ package digital.vault.ui.handler;
 
 import digital.vault.exception.ServiceException;
 import digital.vault.model.vault.VaultItem;
-import digital.vault.service.AuthService;
 import digital.vault.service.VaultService;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class ShowVaultHandler implements  CommandHandler
         }
 
         try{
-            List<VaultItem> vaultItemList=vaultService.getVaultItems(session.getToken());
+            List<VaultItem> vaultItemList=vaultService.getUsersVaultItems(session.getToken());
             vaultItemList.forEach(System.out::println);
         }
         catch (ServiceException e)

@@ -39,7 +39,7 @@ public class AddItemHandler implements  CommandHandler
             return; //factory a afisat eroare
         }
         try{
-            vaultService.addItem(item, session.getToken());
+            vaultService.addVaultItem(item, session.getToken());
             System.out.println("Item '"+item.getTitle()+ "' added succesfully");
         }
         catch (ServiceException e)
