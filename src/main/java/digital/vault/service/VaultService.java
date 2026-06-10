@@ -73,6 +73,9 @@ public class VaultService
             throw new ServiceException("Invalid session. Log in again");
         }
         VaultItem item=vaultDao.findById(id);
+        if(item==null){
+            throw new ServiceException("Item not found");
+        }
         if(!item.getUsernameOwner().equals(username)){
             throw new ServiceException("That is not your item");
         }
