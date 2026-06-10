@@ -52,7 +52,10 @@ public class AuthService
     public String login(String username, String password)
     {
         User user=userDao.findByUsername(username);
-        if(user!=null && user.getMasterPassword().equals(password))
+        if(user==null){
+            throw  new ServiceException("Username not found");
+        }
+        if(user.getMasterPassword().equals(password))
         {
             currentSession=new UserSession(username, 1);
             return currentSession.getSecretToken();

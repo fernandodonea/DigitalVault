@@ -102,18 +102,16 @@ public class TerminalService
         }
         try{
             currenUserToken=authService.login(args[1],args[2]);
+            if(currenUserToken!=null)
+            {
+                System.out.println("Logged in succesfully!");
+            }else{
+                System.out.println("Incorect password");
+            }
         }
         catch (ServiceException e)
         {
             System.out.println(e.getMessage());
-        }
-
-        if(currenUserToken!=null)
-        {
-            System.out.println("Logged in succesfully!");
-        }
-        else{
-            System.out.println("Incorect password");
         }
 
     }
