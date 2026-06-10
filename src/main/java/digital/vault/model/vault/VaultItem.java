@@ -58,7 +58,7 @@ public abstract class VaultItem implements Comparable<VaultItem>
         if(this instanceof Card) return "1_card";
         if(this instanceof WebCredential) return "2_web";
         if(this instanceof SecureNote) return "3_note";
-
+        return "4_other";
     }
 
 }
