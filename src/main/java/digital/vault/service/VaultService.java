@@ -103,7 +103,7 @@ public class VaultService
             throw new ServiceException("Invalid session. Log in again");
         }
         VaultItem existingItem =vaultDao.findById(id);
-        if(existingItem==null || existingItem.getUsernameOwner().equals(username)){
+        if(existingItem==null || !existingItem.getUsernameOwner().equals(username)){
             throw new ServiceException("No item found");
         }
 

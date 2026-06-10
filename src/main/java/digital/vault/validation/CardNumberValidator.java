@@ -11,9 +11,12 @@ public class CardNumberValidator implements Validator<String>
         if(cardNumber==null || cardNumber.trim().isEmpty())
             throw  new ValidationException("Card number cannot be empty");
 
+        if(cardNumber.replaceAll(" ","").length()!=12)
+            throw new ValidationException("Invalid card number");
+
         for(int i=0;i<cardNumber.length();i++)
         {
-            if(Character.isDigit(cardNumber.charAt(i))==false && cardNumber.charAt(i)!=' ')
+            if(!Character.isDigit(cardNumber.charAt(i)) && cardNumber.charAt(i)!=' ')
                 throw new ValidationException("Card number must contain only digits and spaces");
         }
 

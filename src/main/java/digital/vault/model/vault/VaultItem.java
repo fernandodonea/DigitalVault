@@ -39,7 +39,26 @@ public abstract class VaultItem implements Comparable<VaultItem>
     @Override
     public int compareTo(VaultItem o)
     {
+        //comparam dupa tip
+        int typeComparison=getItemType().compareTo(o.getItemType());
+        if(typeComparison!=0)
+            return typeComparison;
+
+        //comparam dupa categorie
+        int categoryCompariosn=this.getCategory().toString().compareTo(o.getCategory().toString());
+        if(categoryCompariosn!=0)
+            return typeComparison;
+
+        //sortam alfabetic
         return this.getTitle().compareTo(o.getTitle());
+    }
+
+    private String getItemType()
+    {
+        if(this instanceof Card) return "1_card";
+        if(this instanceof WebCredential) return "2_web";
+        if(this instanceof SecureNote) return "3_note";
+
     }
 
 }

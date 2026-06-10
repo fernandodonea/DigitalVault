@@ -114,7 +114,7 @@ public class UpdateHandler implements CommandHandler
             System.out.println("Current cvv:  ***");
             String newCvv= reader.readLine("New cvv:");
             if(newCvv.isBlank())
-                newCvv=card.getCardHolderName();
+                newCvv=String.valueOf(card.getCvv());
 
             return new Card(newTitle, newCategory, card.getUsernameOwner(), newCardNumber, newCardHolderName, Integer.parseInt(newCvv));
         }

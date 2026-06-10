@@ -14,7 +14,7 @@ public class UserDaoInMemory implements UserDao
 
     @Override
     public void create(User u) {
-        users.put(u.getId(),u);
+        users.put(u.getUsername(),u);
     }
 
     @Override
