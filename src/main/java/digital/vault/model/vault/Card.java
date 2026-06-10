@@ -27,6 +27,6 @@ public class Card extends VaultItem
     @Override
     public String toString()
     {
-        return super.toString()+" [card]"+ "       "+getTitle()+"      "+getCategory();
+        return super.toString()+"      [web credential]     "+getCategory()+"       [title]:"+getTitle();
     }
 }

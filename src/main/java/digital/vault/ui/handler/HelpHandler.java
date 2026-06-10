@@ -5,24 +5,23 @@ public class HelpHandler implements CommandHandler
     @Override
     public void handle(String[] args) {
         System.out.println("Digital vault commands:");
-        System.out.println("register | register <username> <email> <password> ");
-        System.out.println("login | login <username> <password>");
-        System.out.println("logout| logout");
+        System.out.println("register | register <username> <email> <password> | create a new user");
+        System.out.println("login | login <username> <password> | log in as an existing user");
+        System.out.println("logout| logout | log out");
 
         System.out.println();
         System.out.println();
 
-        System.out.println("ls | ls (list all vault items)");
-        System.out.println("touch | touch <vault-item-type> ");
-        System.out.println("    - touch credential ( add a web credential)");
-        System.out.println("    - touch note (add a secure note)");
-        System.out.println("    - touch card (add payment card)");
-        System.out.println("rm | rm <item-id>");
+        System.out.println("ls | ls | list all vault items ");
+        System.out.println("touch | touch <vault-item-type> | create a new vault item ");
+        System.out.println("rm | rm <item-id> | delete an item with set id");
+        System.out.println("cat | cat <item-id> | display an item with set it" );
+        System.out.println("nano | nano <item-id> | edit an item with set it");
 
         System.out.println();
         System.out.println();
 
-        System.out.println("help | help (show this menu");
-        System.out.println("quit | quit (exit the application");
+        System.out.println("help | help  | show this menu");
+        System.out.println("quit | quit  | exit the application");
     }
 }

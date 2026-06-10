@@ -35,8 +35,11 @@ public class TerminalService
         handlers.put("logout", new LogoutHandler(authService, session));
         handlers.put("ls", new ShowVaultHandler(vaultService, session));
         handlers.put("touch",new AddItemHandler(vaultService, factory, session));
+        handlers.put("cat", new ShowHandler(vaultService, session));
+        handlers.put("nano", new UpdateHandler(vaultService, session, reader));
         handlers.put("rm", new DeleteHandler(vaultService,session));
         handlers.put("help", new HelpHandler());
+
     }
 
     public void start()

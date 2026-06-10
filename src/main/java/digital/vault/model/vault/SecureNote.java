@@ -18,6 +18,8 @@ public class SecureNote extends VaultItem
     @Override
     public String toString()
     {
-        return super.toString()+"[secure note]"+"       "+getTitle()+"      "+getCategory();
+        return super.toString()+"        [secure note]      "+getCategory()+"       [title]:"+getTitle();
+
+
     }
 }

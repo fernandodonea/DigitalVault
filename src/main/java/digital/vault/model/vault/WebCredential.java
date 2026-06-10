@@ -27,7 +27,7 @@ public class WebCredential extends VaultItem
     @Override
     public String toString()
     {
-        return super.toString()+"[web credential]"+"       "+getTitle()+"      "+getCategory();
+        return super.toString()+"      [web credential]     "+getCategory()+"       [title]:"+getTitle();
     }
 
 }
