@@ -188,7 +188,7 @@ public class TerminalService
                 System.out.print("Enter card holder name: ");
                 String ownerName = sc.nextLine();
                 System.out.print("Enter CVV: ");
-                int cvv = 0;
+                int cvv;
                 try {
                     cvv = Integer.parseInt(sc.nextLine().trim());
                 } catch (NumberFormatException e) {

@@ -11,7 +11,7 @@ import digital.vault.ui.TerminalService;
 
 
 public class Main {
-    public static void main(String[] args) {
+    static void main() {
         UserDao userDao=new UserDaoInMemory();
         VaultDao vaultDao=new VaultDaoInMemory();
 

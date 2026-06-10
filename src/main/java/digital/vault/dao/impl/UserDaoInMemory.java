@@ -1,6 +1,6 @@
 package digital.vault.dao.impl;
 
-import digital.vault.dao.GenericDao;
+
 import digital.vault.dao.UserDao;
 import digital.vault.model.User;
 

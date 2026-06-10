@@ -1,6 +1,5 @@
 package digital.vault.dao.impl;
 
-import digital.vault.dao.GenericDao;
 import digital.vault.dao.VaultDao;
 import digital.vault.model.vault.VaultItem;
 
@@ -28,7 +27,7 @@ public class VaultDaoInMemory implements VaultDao
     {
         for(VaultItem i: vaultItems)
         {
-            if(i.getId()==id)
+            if(i.getId().equals(id))
                 return i;
         }
         return  null;
@@ -39,7 +38,7 @@ public class VaultDaoInMemory implements VaultDao
     {
         for(int i = 0; i< vaultItems.size(); i++)
         {
-            if(vaultItems.get(i).getId()==id)
+            if(vaultItems.get(i).getId().equals(id))
             {
                 vaultItems.set(i,updatedObject);
                 break;
@@ -51,7 +50,7 @@ public class VaultDaoInMemory implements VaultDao
     public void deleteById(String id)
     {
         //lambda expresie
-        vaultItems.removeIf(i->i.getId()==id);
+        vaultItems.removeIf(i->i.getId().equals(id));
     }
 
     @Override
