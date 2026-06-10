@@ -31,7 +31,10 @@ public abstract class VaultItem implements Comparable<VaultItem>
 
 
     @Override
-    public abstract String toString();
+    public String toString()
+    {
+        return "[item id]:"+id;
+    }
 
     @Override
     public int compareTo(VaultItem o)
