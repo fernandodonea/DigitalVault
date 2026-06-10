@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: digital_vault_db
+    environment:
+      POSTGRES_DB: digital_vault
+      POSTGRES_USER: vault_user
+      POSTGRES_PASSWORD: vault_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  postgres_data:
