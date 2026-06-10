@@ -1,9 +1,10 @@
 package digital.vault.model;
 
+import java.util.UUID;
+
 public class User
 {
-    private final int id;
-    private static int idCounter=0;
+    private final String id;
 
     private String username;
     private String email;
@@ -12,7 +13,7 @@ public class User
 
     public User(String username, String email, String masterPassword)
     {
-        this.id = idCounter++;
+        this.id = UUID.randomUUID().toString();
         this.username = username;
         this.email = email;
         this.masterPassword = masterPassword;
@@ -21,7 +22,7 @@ public class User
     //getteri
     public String getUsername() {return username;}
     public String getEmail() {return email;}
-    public int getId() {return id;}
+    public String getId() {return id;}
     public String getMasterPassword() {return masterPassword;}
 
     //setteri

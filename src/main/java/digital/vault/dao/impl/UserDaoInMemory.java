@@ -9,7 +9,7 @@ import java.util.*;
 public class UserDaoInMemory implements UserDao
 {
 
-    private Map<Integer,User> users=new HashMap<>(); //dicitona in care retinem username:user
+    private Map<String,User> users=new HashMap<>(); //dicitona in care retinem username:user
 
 
     @Override
@@ -24,11 +24,12 @@ public class UserDaoInMemory implements UserDao
 
 
     @Override
-    public User findById(int id) {
+    public User findById(String id) {
         return users.get(id);
     }
+
     @Override
-    public void update(int id, User updatedUser)
+    public void update(String id, User updatedUser)
     {
         if(users.containsKey(id))
         {
@@ -37,7 +38,7 @@ public class UserDaoInMemory implements UserDao
 
     }
     @Override
-    public void deleteById(int id)
+    public void deleteById(String id)
     {
         users.remove(id);
     }

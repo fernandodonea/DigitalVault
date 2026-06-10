@@ -2,10 +2,11 @@ package digital.vault.model.vault;
 
 import digital.vault.model.Category;
 
+import java.util.UUID;
+
 public abstract class VaultItem implements Comparable<VaultItem>
 {
-    private final int id;
-    private static int idCounter=0;
+    private final String id;
 
     private String title;
     private Category category;
@@ -13,13 +14,13 @@ public abstract class VaultItem implements Comparable<VaultItem>
 
     public VaultItem(String title, Category category, String usernameOwner)
     {
-        this.id=idCounter++;
+        this.id= UUID.randomUUID().toString();
         this.title = title;
         this.category = category;
         this.usernameOwner = usernameOwner;
     }
 
-    public int getId() {return id;}
+    public String getId() {return id;}
     public String getTitle() {return title;}
     public Category getCategory() {return category;}
     public String getUsernameOwner() {return usernameOwner;}

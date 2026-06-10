@@ -24,7 +24,7 @@ public class VaultDaoInMemory implements VaultDao
     }
 
     @Override
-    public VaultItem findById(int id)
+    public VaultItem findById(String id)
     {
         for(VaultItem i: vaultItems)
         {
@@ -35,7 +35,7 @@ public class VaultDaoInMemory implements VaultDao
 
     }
     @Override
-    public void update(int id, VaultItem updatedObject)
+    public void update(String id, VaultItem updatedObject)
     {
         for(int i = 0; i< vaultItems.size(); i++)
         {
@@ -48,7 +48,7 @@ public class VaultDaoInMemory implements VaultDao
 
     }
     @Override
-    public void deleteById(int id)
+    public void deleteById(String id)
     {
         //lambda expresie
         vaultItems.removeIf(i->i.getId()==id);

@@ -12,9 +12,9 @@ public interface GenericDao <T>
 
     List<T> findAll();
 
-    T findById(int id);
+    T findById(String id);
 
-    void update(int id, T updatedObject);
+    void update(String id, T updatedObject);
 
-    void deleteById(int id);
+    void deleteById(String id);
 }

@@ -66,7 +66,7 @@ public class VaultService
         return userItems;
     }
 
-    public void deleteItem(int id, String token)
+    public void deleteItem(String id, String token)
     {
         String username= authService.validateTokenAndGetUsername(token);
         if(username==null){
