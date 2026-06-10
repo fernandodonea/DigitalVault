@@ -7,6 +7,7 @@ import digital.vault.model.UserSession;
 import digital.vault.validation.EmailValidator;
 import digital.vault.exception.ValidationException;
 import digital.vault.validation.PasswordValidator;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class AuthService
 {
@@ -44,6 +45,10 @@ public class AuthService
             throw new ServiceException("Passowrd is not valid: "+e.getMessage());
         }
 
+        //pentru hasharea parolei
+        String hashedPassword = BCrypt.hashpw(masterPassword, BCrypt.gensalt());
+        userDao.create(new User(username, email, hashedPassword));
+
         userDao.create(new User(username,email,masterPassword));
         AuditService.getInstance().log("register");
 
@@ -60,7 +65,7 @@ public class AuthService
 
         //verificam credentiasl
         User user=userDao.findByUsername(username);
-        if(user==null || !user.getMasterPassword().equals(password)){
+        if(user==null || BCrypt.checkpw(password, user.getMasterPassword())){
             throw  new ServiceException("Invalid username or password");
         }
 
