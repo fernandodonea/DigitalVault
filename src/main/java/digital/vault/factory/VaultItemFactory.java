@@ -19,7 +19,7 @@ public class VaultItemFactory
 
         return switch (type) {
             case "note" -> createNote(title, category);
-            case "credential" -> createWebCredential(title, category);
+            case "web" -> createWebCredential(title, category);
             case "card" -> createCard(title, category);
             default -> null;
         };
