@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Database
 {
-    private final String url="jdbc:postgresql://localhost:5432/postgres";
+    private final String url="jdbc:postgresql://localhost:5432/digital_vault";
     private final String user="vault_user";
     private final String password="vault_pass";
 

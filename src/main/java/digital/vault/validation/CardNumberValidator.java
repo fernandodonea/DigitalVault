@@ -11,7 +11,7 @@ public class CardNumberValidator implements Validator<String>
         if(cardNumber==null || cardNumber.trim().isEmpty())
             throw  new ValidationException("Card number cannot be empty");
 
-        if(cardNumber.replaceAll(" ","").length()!=12)
+        if(cardNumber.replaceAll(" ","").length()!=16)
             throw new ValidationException("Invalid card number");
 
         for(int i=0;i<cardNumber.length();i++)

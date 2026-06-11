@@ -190,7 +190,7 @@ public class VaultDaoDB implements VaultDao
             pstm.setString(2, updatedObject.getCategory().name());
 
             if(updatedObject instanceof SecureNote note) {
-                pstm.setString(3,"note");
+                pstm.setString(3,note.getContent());
 
                 pstm.setString(4,note.getContent());
                 pstm.setNull(5, Types.VARCHAR);
