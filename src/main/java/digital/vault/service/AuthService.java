@@ -49,7 +49,6 @@ public class AuthService
         String hashedPassword = BCrypt.hashpw(masterPassword, BCrypt.gensalt());
         userDao.create(new User(username, email, hashedPassword));
 
-        userDao.create(new User(username,email,masterPassword));
         AuditService.getInstance().log("register");
 
     }
@@ -65,7 +64,7 @@ public class AuthService
 
         //verificam credentiasl
         User user=userDao.findByUsername(username);
-        if(user==null || BCrypt.checkpw(password, user.getMasterPassword())){
+        if(user==null || !BCrypt.checkpw(password, user.getMasterPassword())){
             throw  new ServiceException("Invalid username or password");
         }
 
