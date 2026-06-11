@@ -92,8 +92,8 @@ public class UserDaoDB implements UserDao
         String sql="UPDATE users SET username=?, email=?, password=? WHERE id=?";
         try(PreparedStatement ps=conn().prepareStatement(sql)){
             ps.setString(1,user.getUsername());
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getMasterPassword());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getMasterPassword());
             ps.setString(4,id);
             ps.executeUpdate();
         } catch (SQLException e) {
