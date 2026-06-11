@@ -15,6 +15,14 @@ public class Card extends VaultItem
         this.cvv = cvv;
     }
 
+    //pentru bd
+    public Card(String id, String title, Category category, String usernameOwner, String cardNumber, String cardHolderName, int cvv) {
+        super(id, title, category, usernameOwner);
+        this.cardNumber = cardNumber;
+        this.cardHolderName = cardHolderName;
+        this.cvv = cvv;
+    }
+
     public String getCardNumber() {return cardNumber;}
     public String getCardHolderName() {return cardHolderName;}
     public int getCvv() {return cvv;}

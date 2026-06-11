@@ -11,6 +11,10 @@ public class SecureNote extends VaultItem
         this.content = content;
     }
 
+    public SecureNote(String id, String title, Category category, String usernameOwner, String content) {
+        super(id, title, category, usernameOwner);
+        this.content = content;
+    }
     public String getContent() {return content;}
     public void setContent(String content) {this.content = content;}
 

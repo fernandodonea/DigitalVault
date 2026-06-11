@@ -12,6 +12,14 @@ public abstract class VaultItem implements Comparable<VaultItem>
     private Category category;
     private String usernameOwner;
 
+    //pentru baza de date
+    public VaultItem(String id, String title, Category category, String usernameOwner) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.usernameOwner = usernameOwner;
+    }
+
     public VaultItem(String title, Category category, String usernameOwner)
     {
         this.id= UUID.randomUUID().toString();

@@ -11,6 +11,12 @@ public class User
     private String masterPassword;
 
 
+    public User(String id, String username, String email, String masterPassword) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.masterPassword = masterPassword;
+    }
     public User(String username, String email, String masterPassword)
     {
         this.id = UUID.randomUUID().toString();

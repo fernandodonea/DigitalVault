@@ -15,6 +15,13 @@ public class WebCredential extends VaultItem
         this.password = password;
     }
 
+    public WebCredential(String id, String title, Category category, String usernameOwner, String url, String username, String password) {
+        super(id, title, category, usernameOwner);
+        this.url = url;
+        this.username = username;
+        this.password = password;
+    }
+
     public String getUrl() {return url;}
     public String getUsername() {return username;}
     public String getPassword() {return password;}
