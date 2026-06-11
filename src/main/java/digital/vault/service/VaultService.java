@@ -48,7 +48,7 @@ public class VaultService
         }
         item.setUsernameOwner(username);
         vaultDao.create(item);
-        AuditService.getInstance().log("add item");
+        AuditService.getInstance().log("add-item");
     }
 
     public List<VaultItem> getUsersVaultItems(String token)
@@ -63,7 +63,7 @@ public class VaultService
             throw new ServiceException("Vault empty");
         }
 
-        AuditService.getInstance().log("get vault items");
+        AuditService.getInstance().log("get-vault-items");
         return userItems;
     }
 
@@ -82,7 +82,7 @@ public class VaultService
         }
 
         vaultDao.deleteById(id);
-        AuditService.getInstance().log("delete item");
+        AuditService.getInstance().log("delete-item");
     }
 
 
@@ -97,7 +97,7 @@ public class VaultService
             throw new ServiceException("No item found");
         }
 
-        AuditService.getInstance().log("get vault item");
+        AuditService.getInstance().log("get-vault-item");
         return item;
     }
 
@@ -126,7 +126,7 @@ public class VaultService
         }
         updatedItem.setUsernameOwner(username);
         vaultDao.update(id, updatedItem);
-        AuditService.getInstance().log("update item");
+        AuditService.getInstance().log("update-item");
     }
 
 

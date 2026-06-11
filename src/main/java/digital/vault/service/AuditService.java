@@ -1,5 +1,6 @@
 package digital.vault.service;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,17 +9,19 @@ import java.time.LocalDateTime;
 public class AuditService
 {
     private static AuditService instance;
-    private static final String file_path="audit.csv";
+    private static final String FILE_PATH="audit.csv";
 
     private AuditService()
     {
-        try{
-            PrintWriter pw=new PrintWriter(new FileWriter(file_path,true));
+        File f=new File(FILE_PATH);
+        if(!f.exists()){
+            try(PrintWriter pw=new PrintWriter(new FileWriter(FILE_PATH))){
+                pw.println("action_name,timestamp");
+            }catch (IOException e){
+                System.err.println("Could not init audit file: "+e.getMessage());
+            }
         }
-        catch (IOException e)
-        {
-            System.err.println("Could not init audit file");
-        }
+
     }
 
     public static AuditService getInstance()
@@ -31,9 +34,9 @@ public class AuditService
 
     public void log(String actionName)
     {
-        try(PrintWriter pw=new PrintWriter(new FileWriter(file_path, true)))
+        try(PrintWriter pw=new PrintWriter(new FileWriter(FILE_PATH, true)))
         {
-            pw.println(actionName+" "+ LocalDateTime.now());
+            pw.println(actionName+", "+ LocalDateTime.now());
 
         }
         catch (IOException e)
