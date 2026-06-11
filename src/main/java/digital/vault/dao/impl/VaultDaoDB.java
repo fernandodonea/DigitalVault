@@ -192,13 +192,13 @@ public class VaultDaoDB implements VaultDao
             if(updatedObject instanceof SecureNote note) {
                 pstm.setString(3,note.getContent());
 
-                pstm.setString(4,note.getContent());
+                pstm.setNull(4,Types.VARCHAR);
                 pstm.setNull(5, Types.VARCHAR);
                 pstm.setNull(6, Types.VARCHAR);
 
                 pstm.setNull(7, Types.VARCHAR);
                 pstm.setNull(8, Types.VARCHAR);
-                pstm.setNull(12, Types.INTEGER);
+                pstm.setNull(9, Types.INTEGER);
             }else if(updatedObject instanceof WebCredential web)
             {
 
