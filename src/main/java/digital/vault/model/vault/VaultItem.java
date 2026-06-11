@@ -55,7 +55,7 @@ public abstract class VaultItem implements Comparable<VaultItem>
         //comparam dupa categorie
         int categoryCompariosn=this.getCategory().toString().compareTo(o.getCategory().toString());
         if(categoryCompariosn!=0)
-            return typeComparison;
+            return categoryCompariosn;
 
         //sortam alfabetic
         return this.getTitle().compareTo(o.getTitle());

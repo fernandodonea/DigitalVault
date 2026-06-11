@@ -57,7 +57,7 @@ public class ShowHandler implements  CommandHandler
             System.out.println("  Type     : Secure Note");
             System.out.println("  Content  : " + note.getContent());
         }
-        System.out.println("─────────────────────────────────");
+        System.out.println("--------------------------------------");
     }
 
 

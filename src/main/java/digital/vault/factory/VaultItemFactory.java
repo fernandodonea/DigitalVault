@@ -14,7 +14,7 @@ public class VaultItemFactory
 
     public VaultItem create(String type)
     {
-        String title=reader.readLine("Enter title");
+        String title=reader.readLine("Enter title: ");
         Category category=reader.readCategory();
 
         return switch (type) {

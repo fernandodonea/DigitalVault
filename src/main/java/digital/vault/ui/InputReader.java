@@ -30,7 +30,7 @@ public class InputReader
     public Category readCategory()
     {
         String input=readLine
-                ("Enter category: (SOCIAL, BANKING, WORK, EMAIL, SHOPPING, ENTERTAINMENT, SECURITY, OTHER").toUpperCase();
+                ("Enter category (SOCIAL, BANKING, WORK, EMAIL, SHOPPING, ENTERTAINMENT, SECURITY, OTHER): ").toUpperCase();
         try{
             return Category.valueOf(input);
         }catch (IllegalArgumentException e)

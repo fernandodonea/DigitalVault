@@ -63,7 +63,7 @@ public class UpdateHandler implements CommandHandler
             newCategory=item.getCategory();
         }else{
             try{
-                newCategory=Category.valueOf(categoryStr);
+                newCategory=Category.valueOf(categoryStr.toUpperCase());
             }
             catch (IllegalArgumentException e)
             {

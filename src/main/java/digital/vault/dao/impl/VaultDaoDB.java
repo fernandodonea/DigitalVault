@@ -11,6 +11,8 @@ import digital.vault.model.vault.WebCredential;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class VaultDaoDB implements VaultDao
@@ -292,6 +294,7 @@ public class VaultDaoDB implements VaultDao
         }catch (SQLException e){
             throw new DatabaseException(e.getMessage());
         }
+        Collections.sort(usersVaultItems);
         return usersVaultItems;
     }
 }
