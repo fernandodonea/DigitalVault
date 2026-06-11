@@ -36,6 +36,7 @@ public class TerminalService
         handlers.put("ls", new ShowVaultHandler(vaultService, session));
         handlers.put("touch",new AddItemHandler(vaultService, factory, session));
         handlers.put("cat", new ShowHandler(vaultService, session));
+        handlers.put("reveal", new RevealHandler(vaultService, authService, session, reader));
         handlers.put("nano", new UpdateHandler(vaultService, session, reader));
         handlers.put("rm", new DeleteHandler(vaultService,session));
         handlers.put("help", new HelpHandler());

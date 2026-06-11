@@ -100,4 +100,10 @@ public class AuthService
         }
         return currentSession.getUsername();
     }
+
+    public boolean verifyPassword(String username, String plainPassword) {
+        User user = userDao.findByUsername(username);
+        if (user == null) return false;
+        return BCrypt.checkpw(plainPassword, user.getMasterPassword());
+    }
 }

@@ -16,6 +16,7 @@ public class HelpHandler implements CommandHandler
         System.out.println("touch | touch <vault-item-type> | create a new vault item ");
         System.out.println("rm | rm <item-id> | delete an item with set id");
         System.out.println("cat | cat <item-id> | display an item with set it" );
+        System.out.println("reveal | reveal <item-id> | show sensitive data (requires master password)");
         System.out.println("nano | nano <item-id> | edit an item with set it");
 
         System.out.println();
