@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDaoDB implements UserDao
 {
-    private Connection conn() throws SQLException{
+    private Connection conn() {
         return Database.getInstance().getConnection();
     }
 

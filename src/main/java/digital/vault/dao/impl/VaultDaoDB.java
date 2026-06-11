@@ -16,7 +16,7 @@ import java.util.List;
 public class VaultDaoDB implements VaultDao
 {
 
-    private Connection conn() throws SQLException {
+    private Connection conn() {
         return Database.getInstance().getConnection();
     }
 
