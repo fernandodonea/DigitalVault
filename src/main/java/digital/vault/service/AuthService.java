@@ -101,6 +101,7 @@ public class AuthService
         return currentSession.getUsername();
     }
 
+    //pentru reveal
     public boolean verifyPassword(String username, String plainPassword) {
         User user = userDao.findByUsername(username);
         if (user == null) return false;
